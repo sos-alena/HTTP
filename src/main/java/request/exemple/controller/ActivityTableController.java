@@ -21,7 +21,7 @@ public class ActivityTableController {
     }
 
     public void createRequest() {
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 7; i++) {
             HttpClient client = HttpClient.newHttpClient();
             HttpRequest request = HttpRequest.newBuilder().uri(URI.create("https://www.boredapi.com/api/activity")).build();
             client.sendAsync(request, HttpResponse.BodyHandlers.ofString())
