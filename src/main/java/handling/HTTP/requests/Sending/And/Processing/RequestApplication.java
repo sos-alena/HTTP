@@ -8,9 +8,10 @@ public class RequestApplication {
 
     public static void main(String[] args){
 
-        ActivityTableRrepositoryIml activityTablelRrepositoryIml = new ActivityTableRrepositoryIml();
-        ActivityTableServise activityTableServise = new ActivityTableServise(activityTablelRrepositoryIml);
-        ActivityTableController activityTableController = new ActivityTableController(activityTableServise);
-        activityTableController.createRequest();
+        ActivityTableRrepositoryIml activityTableRepositoryIml = new ActivityTableRrepositoryIml();
+        ActivityTableServise activityTableServise = new ActivityTableServise(activityTableRepositoryIml);
+        ActivityTableController activityTableController =
+                new ActivityTableController(activityTableServise);
+        activityTableController.createRequests();
     }
 }
