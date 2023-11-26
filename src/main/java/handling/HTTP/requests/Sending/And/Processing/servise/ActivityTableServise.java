@@ -1,7 +1,7 @@
-package request.exemple.servise;
+package handling.HTTP.requests.Sending.And.Processing.servise;
 
-import request.exemple.models.ActivityTable;
-import request.exemple.repository.ActivityTableRrepositoryIml;
+import handling.HTTP.requests.Sending.And.Processing.repository.ActivityTableRrepositoryIml;
+import handling.HTTP.requests.Sending.And.Processing.models.ActivityTable;
 
 import java.sql.SQLException;
 

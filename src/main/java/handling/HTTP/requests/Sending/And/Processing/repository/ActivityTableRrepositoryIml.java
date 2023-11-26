@@ -1,8 +1,8 @@
-package request.exemple.repository;
+package handling.HTTP.requests.Sending.And.Processing.repository;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import request.exemple.models.ActivityTable;
+import handling.HTTP.requests.Sending.And.Processing.models.ActivityTable;
 
 public class ActivityTableRrepositoryIml implements ActivityTableRepository {
     @Override

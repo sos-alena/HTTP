@@ -1,9 +1,9 @@
-package request.exemple.repository;
+package handling.HTTP.requests.Sending.And.Processing.repository;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
-import request.exemple.models.ActivityTable;
+import handling.HTTP.requests.Sending.And.Processing.models.ActivityTable;
 
 public class HibernateUtil {
     public static SessionFactory sessionFactory;

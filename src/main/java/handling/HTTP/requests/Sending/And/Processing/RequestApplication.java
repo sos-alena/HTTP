@@ -1,8 +1,8 @@
-package request.exemple;
+package handling.HTTP.requests.Sending.And.Processing;
 
-import request.exemple.controller.ActivityTableController;
-import request.exemple.repository.ActivityTableRrepositoryIml;
-import request.exemple.servise.ActivityTableServise;
+import handling.HTTP.requests.Sending.And.Processing.controller.ActivityTableController;
+import handling.HTTP.requests.Sending.And.Processing.repository.ActivityTableRrepositoryIml;
+import handling.HTTP.requests.Sending.And.Processing.servise.ActivityTableServise;
 
 public class RequestApplication {
 

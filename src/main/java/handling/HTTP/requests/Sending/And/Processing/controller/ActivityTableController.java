@@ -1,11 +1,11 @@
-package request.exemple.controller;
+package handling.HTTP.requests.Sending.And.Processing.controller;
 
+import handling.HTTP.requests.Sending.And.Processing.repository.ActivityTableRrepositoryIml;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import request.exemple.models.ActivityTable;
-import request.exemple.repository.ActivityTableRrepositoryIml;
-import request.exemple.servise.ActivityTableServise;
+import handling.HTTP.requests.Sending.And.Processing.models.ActivityTable;
+import handling.HTTP.requests.Sending.And.Processing.servise.ActivityTableServise;
 
 import java.net.URI;
 import java.net.http.HttpClient;
