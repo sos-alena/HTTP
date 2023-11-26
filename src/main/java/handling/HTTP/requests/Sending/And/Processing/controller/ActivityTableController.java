@@ -39,8 +39,7 @@ public class ActivityTableController {
 
     public static Void parse(String responseBody) {
 
-        StringBuilder sb = new StringBuilder().append("[").append(responseBody).append("]");
-        JSONArray model = new JSONArray(String.valueOf(sb));
+        JSONArray model = new JSONArray("[" + responseBody + "]");
 
         ActivityTableRrepositoryIml modelRrepositoryIml = new ActivityTableRrepositoryIml();
         ActivityTableServise modelServise = new ActivityTableServise(modelRrepositoryIml);
