@@ -14,19 +14,24 @@ import java.net.http.HttpResponse;
 import java.sql.SQLException;
 
 public class ActivityTableController {
+    ActivityTableRrepositoryIml activityTableRepositoryIml;
     ActivityTableServise activityTableServise;
+    JSONArray model;
+    HttpClient client;
+    HttpRequest request;
 
     public ActivityTableController(ActivityTableServise activityTableServise) {
         this.activityTableServise = activityTableServise;
     }
 
-    public void createRequest() {
+    public void createRequests() {
+
         for (int i = 0; i < 7; i++) {
-            HttpClient client = HttpClient.newHttpClient();
-            HttpRequest request = HttpRequest.newBuilder().uri(URI.create("https://www.boredapi.com/api/activity")).build();
+            client = HttpClient.newHttpClient();
+            request = HttpRequest.newBuilder().uri(URI.create("https://www.boredapi.com/api/activity")).build();
             client.sendAsync(request, HttpResponse.BodyHandlers.ofString())
                     .thenApply(HttpResponse::body)
-                    .thenApply(ActivityTableController::parse)
+                    .thenApply(this::parseAndSaveInBD)
                     .join();
 
             try {
@@ -36,49 +41,47 @@ public class ActivityTableController {
             }
         }
     }
+    public Void parseAndSaveInBD(String responseBody) {
 
-    public static Void parse(String responseBody) {
-
-        JSONArray model = new JSONArray("[" + responseBody + "]");
-
-        ActivityTableRrepositoryIml modelRrepositoryIml = new ActivityTableRrepositoryIml();
-        ActivityTableServise modelServise = new ActivityTableServise(modelRrepositoryIml);
+        model = new JSONArray("[" + responseBody + "]");
+        activityTableRepositoryIml = new ActivityTableRrepositoryIml();
+        activityTableServise = new ActivityTableServise(activityTableRepositoryIml);
         int temp = 1;
         for (int i = 0; i < model.length(); i++) {
 
-            ActivityTable modelTable = new ActivityTable();
+            ActivityTable activityTable = new ActivityTable();
 
             int id = temp++;
-            modelTable.setId(id);
+            activityTable.setId(id);
 
             JSONObject album = model.getJSONObject(i);
 
             String activity = album.getString("activity");
-            modelTable.setActivity(activity);
+            activityTable.setActivity(activity);
 
             String type = album.getString("type");
-            modelTable.setType(type);
+            activityTable.setType(type);
 
             int participants = album.getInt("participants");
-            modelTable.setParticipants(participants);
+            activityTable.setParticipants(participants);
 
             int price = album.getInt("price");
-            modelTable.setPrice(price);
+            activityTable.setPrice(price);
 
             String link = album.getString("link");
-            modelTable.setActivityLine(link);
+            activityTable.setActivityLine(link);
 
             String key = album.getString("key");
-            modelTable.setActivitykey(key);
+            activityTable.setActivitykey(key);
 
             int accessibility = album.getInt("accessibility");
-            modelTable.setAccessibility(accessibility);
+            activityTable.setAccessibility(accessibility);
 
             System.out.println(activity + " " + type + " " + participants + " "
                     + price + " " + link + " " + key + " " + accessibility);
 
             try {
-                modelServise.add(modelTable);
+                activityTableServise.add(activityTable);
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
