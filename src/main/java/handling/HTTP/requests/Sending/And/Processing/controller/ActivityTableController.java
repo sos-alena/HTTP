@@ -1,5 +1,6 @@
 package handling.HTTP.requests.Sending.And.Processing.controller;
 
+import handling.HTTP.requests.Sending.And.Processing.repository.ActivityTableRepository;
 import handling.HTTP.requests.Sending.And.Processing.repository.ActivityTableRrepositoryIml;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -14,7 +15,7 @@ import java.net.http.HttpResponse;
 import java.sql.SQLException;
 
 public class ActivityTableController {
-    ActivityTableRrepositoryIml activityTableRepositoryIml;
+    ActivityTableRepository activityTableRepository;
     ActivityTableServise activityTableServise;
     JSONArray model;
     HttpClient client;
@@ -44,8 +45,8 @@ public class ActivityTableController {
     public Void parseAndSaveInBD(String responseBody) {
 
         model = new JSONArray("[" + responseBody + "]");
-        activityTableRepositoryIml = new ActivityTableRrepositoryIml();
-        activityTableServise = new ActivityTableServise(activityTableRepositoryIml);
+        activityTableRepository = new ActivityTableRrepositoryIml();
+        activityTableServise = new ActivityTableServise((ActivityTableRrepositoryIml) activityTableRepository);
         int temp = 1;
         for (int i = 0; i < model.length(); i++) {
 
