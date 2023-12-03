@@ -1,8 +1,8 @@
-package handling.HTTP.requests.Sending.And.Processing;
+package handlingHTTPrequests;
 
-import handling.HTTP.requests.Sending.And.Processing.controller.ActivityTableController;
-import handling.HTTP.requests.Sending.And.Processing.repository.ActivityTableRrepositoryIml;
-import handling.HTTP.requests.Sending.And.Processing.servise.ActivityTableServise;
+import handlingHTTPrequests.controller.ActivityTableController;
+import handlingHTTPrequests.repository.ActivityTableRrepositoryIml;
+import handlingHTTPrequests.servise.ActivityTableServise;
 
 public class RequestApplication {
 

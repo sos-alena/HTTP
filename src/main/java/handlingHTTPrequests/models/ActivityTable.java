@@ -1,4 +1,4 @@
-package handling.HTTP.requests.Sending.And.Processing.models;
+package handlingHTTPrequests.models;
 
 import lombok.*;
 import javax.persistence.*;

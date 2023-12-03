@@ -1,9 +1,9 @@
-package handling.HTTP.requests.Sending.And.Processing.repository;
+package handlingHTTPrequests.repository;
 
-import handling.HTTP.requests.Sending.And.Processing.util.HibernateUtil;
+import handlingHTTPrequests.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import handling.HTTP.requests.Sending.And.Processing.models.ActivityTable;
+import handlingHTTPrequests.models.ActivityTable;
 
 public class ActivityTableRrepositoryIml implements ActivityTableRepository {
 
