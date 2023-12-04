@@ -1,4 +1,4 @@
-package handlingHTTPrequests.models;
+package handlinghttprequests.models;
 
 import lombok.*;
 import javax.persistence.*;
@@ -7,7 +7,7 @@ import java.util.Objects;
 @Getter
 @Setter
 @Entity
-@Table(name = "ModelTable")
+@Table(name = "ActivityTable")
 public class ActivityTable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

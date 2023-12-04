@@ -1,9 +1,9 @@
-package handlingHTTPrequests.util;
+package handlinghttprequests.util;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
-import handlingHTTPrequests.models.ActivityTable;
+import handlinghttprequests.models.ActivityTable;
 
 public class HibernateUtil {
 

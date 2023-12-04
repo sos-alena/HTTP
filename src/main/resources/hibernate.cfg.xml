@@ -16,7 +16,7 @@
     <property name = "hibernate.hbm2ddl.auto">update</property>
 
 
-    <mapping class="handlingHTTPrequests.models.ActivityTable"/>
+    <mapping class="handlinghttprequests.models.ActivityTable"/>
 
   </session-factory>
 </hibernate-configuration>

@@ -1,8 +1,8 @@
-package handlingHTTPrequests.servise;
+package handlinghttprequests.servise;
 
-import handlingHTTPrequests.repository.ActivityTableRepository;
-import handlingHTTPrequests.repository.ActivityTableRrepositoryIml;
-import handlingHTTPrequests.models.ActivityTable;
+import handlinghttprequests.repository.ActivityTableRepository;
+import handlinghttprequests.repository.ActivityTableRrepositoryIml;
+import handlinghttprequests.models.ActivityTable;
 
 import java.sql.SQLException;
 

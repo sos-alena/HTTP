@@ -1,12 +1,10 @@
-package handlingHTTPrequests.controller;
+package handlinghttprequests.controller;
 
-import handlingHTTPrequests.repository.ActivityTableRepository;
-import handlingHTTPrequests.repository.ActivityTableRrepositoryIml;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import handlingHTTPrequests.models.ActivityTable;
-import handlingHTTPrequests.servise.ActivityTableServise;
+import handlinghttprequests.models.ActivityTable;
+import handlinghttprequests.servise.ActivityTableServise;
 
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -15,21 +13,21 @@ import java.net.http.HttpResponse;
 import java.sql.SQLException;
 
 public class ActivityTableController {
-    ActivityTableRepository activityTableRepository;
     ActivityTableServise activityTableServise;
-    JSONArray model;
     HttpClient client;
     HttpRequest request;
+    JSONArray model;
 
     public ActivityTableController(ActivityTableServise activityTableServise) {
         this.activityTableServise = activityTableServise;
+        client = HttpClient.newHttpClient();
+        request = HttpRequest.newBuilder().uri(URI.create("https://www.boredapi.com/api/activity")).build();
+
     }
 
     public void createRequests() {
 
         for (int i = 0; i < 7; i++) {
-            client = HttpClient.newHttpClient();
-            request = HttpRequest.newBuilder().uri(URI.create("https://www.boredapi.com/api/activity")).build();
             client.sendAsync(request, HttpResponse.BodyHandlers.ofString())
                     .thenApply(HttpResponse::body)
                     .thenApply(this::parseAndSaveInBD)
@@ -42,11 +40,11 @@ public class ActivityTableController {
             }
         }
     }
+
     public Void parseAndSaveInBD(String responseBody) {
 
         model = new JSONArray("[" + responseBody + "]");
-        activityTableRepository = new ActivityTableRrepositoryIml();
-        activityTableServise = new ActivityTableServise((ActivityTableRrepositoryIml) activityTableRepository);
+
         int temp = 1;
         for (int i = 0; i < model.length(); i++) {
 
