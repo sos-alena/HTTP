@@ -18,11 +18,10 @@ public class ActivityTableController {
     HttpRequest request;
     JSONArray model;
 
-    public ActivityTableController(ActivityTableServise activityTableServise) {
+    public ActivityTableController(ActivityTableServise activityTableServise, HttpClient client, HttpRequest request) {
         this.activityTableServise = activityTableServise;
-        client = HttpClient.newHttpClient();
-        request = HttpRequest.newBuilder().uri(URI.create("https://www.boredapi.com/api/activity")).build();
-
+        this.client = client;
+        this.request = request;
     }
 
     public void createRequests() {
