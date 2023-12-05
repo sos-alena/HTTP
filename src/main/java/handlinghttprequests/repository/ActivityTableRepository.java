@@ -1,6 +1,6 @@
-package request.exemple.repository;
+package handlinghttprequests.repository;
 
-import request.exemple.models.ActivityTable;
+import handlinghttprequests.models.ActivityTable;
 
 import java.sql.SQLException;
 public interface ActivityTableRepository {

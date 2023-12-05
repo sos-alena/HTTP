@@ -1,12 +1,15 @@
-package request.exemple.repository;
+package handlinghttprequests.repository;
 
+import handlinghttprequests.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import request.exemple.models.ActivityTable;
+import handlinghttprequests.models.ActivityTable;
 
 public class ActivityTableRrepositoryIml implements ActivityTableRepository {
+
     @Override
     public void add(ActivityTable model) {
+
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction transaction = session.beginTransaction();
         session = session.getSession();

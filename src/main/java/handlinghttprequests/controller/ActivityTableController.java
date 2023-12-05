@@ -1,13 +1,11 @@
-package request.exemple.controller;
+package handlinghttprequests.controller;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import request.exemple.models.ActivityTable;
-import request.exemple.repository.ActivityTableRrepositoryIml;
-import request.exemple.servise.ActivityTableServise;
+import handlinghttprequests.models.ActivityTable;
+import handlinghttprequests.servise.ActivityTableServise;
 
-import java.net.URI;
 import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
@@ -15,18 +13,22 @@ import java.sql.SQLException;
 
 public class ActivityTableController {
     ActivityTableServise activityTableServise;
+    HttpClient client;
+    HttpRequest request;
+    JSONArray model;
 
-    public ActivityTableController(ActivityTableServise activityTableServise) {
+    public ActivityTableController(ActivityTableServise activityTableServise, HttpClient client, HttpRequest request) {
         this.activityTableServise = activityTableServise;
+        this.client = client;
+        this.request = request;
     }
 
-    public void createRequest() {
-        for (int i = 0; i < 10; i++) {
-            HttpClient client = HttpClient.newHttpClient();
-            HttpRequest request = HttpRequest.newBuilder().uri(URI.create("https://www.boredapi.com/api/activity")).build();
+    public void createRequests() {
+
+        for (int i = 0; i < 7; i++) {
             client.sendAsync(request, HttpResponse.BodyHandlers.ofString())
                     .thenApply(HttpResponse::body)
-                    .thenApply(ActivityTableController::parse)
+                    .thenApply(this::parseAndSaveInBD)
                     .join();
 
             try {
@@ -37,49 +39,46 @@ public class ActivityTableController {
         }
     }
 
-    public static Void parse(String responseBody) {
+    public Void parseAndSaveInBD(String responseBody) {
 
-        StringBuilder sb = new StringBuilder().append("[").append(responseBody).append("]");
-        JSONArray model = new JSONArray(String.valueOf(sb));
+        model = new JSONArray("[" + responseBody + "]");
 
-        ActivityTableRrepositoryIml modelRrepositoryIml = new ActivityTableRrepositoryIml();
-        ActivityTableServise modelServise = new ActivityTableServise(modelRrepositoryIml);
         int temp = 1;
         for (int i = 0; i < model.length(); i++) {
 
-            ActivityTable modelTable = new ActivityTable();
+            ActivityTable activityTable = new ActivityTable();
 
             int id = temp++;
-            modelTable.setId(id);
+            activityTable.setId(id);
 
             JSONObject album = model.getJSONObject(i);
 
             String activity = album.getString("activity");
-            modelTable.setActivity(activity);
+            activityTable.setActivity(activity);
 
             String type = album.getString("type");
-            modelTable.setType(type);
+            activityTable.setType(type);
 
             int participants = album.getInt("participants");
-            modelTable.setParticipants(participants);
+            activityTable.setParticipants(participants);
 
             int price = album.getInt("price");
-            modelTable.setPrice(price);
+            activityTable.setPrice(price);
 
             String link = album.getString("link");
-            modelTable.setActivityLine(link);
+            activityTable.setActivityLine(link);
 
             String key = album.getString("key");
-            modelTable.setActivitykey(key);
+            activityTable.setActivitykey(key);
 
             int accessibility = album.getInt("accessibility");
-            modelTable.setAccessibility(accessibility);
+            activityTable.setAccessibility(accessibility);
 
             System.out.println(activity + " " + type + " " + participants + " "
                     + price + " " + link + " " + key + " " + accessibility);
 
             try {
-                modelServise.add(modelTable);
+                activityTableServise.add(activityTable);
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
