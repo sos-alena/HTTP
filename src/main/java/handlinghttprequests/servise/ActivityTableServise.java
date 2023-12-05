@@ -10,7 +10,7 @@ public class ActivityTableServise {
 
     ActivityTableRepository activityTableRepository;
 
-    public ActivityTableServise(ActivityTableRrepositoryIml activityTableRepositoryIml) {
+    public ActivityTableServise(ActivityTableRepository activityTableRepositoryIml) {
         this.activityTableRepository = activityTableRepositoryIml;
     }
 

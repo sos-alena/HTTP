@@ -17,7 +17,7 @@ public class RequestApplication {
         HttpRequest request = HttpRequest.newBuilder().uri(URI.create("https://www.boredapi.com/api/activity")).build();
 
         ActivityTableRepository activityTableRepository = new ActivityTableRrepositoryIml();
-        ActivityTableServise activityTableServise = new ActivityTableServise((ActivityTableRrepositoryIml) activityTableRepository);
+        ActivityTableServise activityTableServise = new ActivityTableServise(activityTableRepository);
         ActivityTableController activityTableController =
                 new ActivityTableController(activityTableServise, client, request);
         activityTableController.createRequests();
