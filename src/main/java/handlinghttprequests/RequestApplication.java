@@ -1,7 +1,5 @@
 package handlinghttprequests;
 
-import com.mysql.cj.xdevapi.Client;
-import com.sun.net.httpserver.Request;
 import handlinghttprequests.controller.ActivityTableController;
 import handlinghttprequests.repository.ActivityTableRepository;
 import handlinghttprequests.repository.ActivityTableRrepositoryIml;
